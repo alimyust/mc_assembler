@@ -24,16 +24,22 @@ except Exception as e:
 
 def main():
 
+    i = 0
     code_errors = False
     for c in raw_code:
-        try:
-            mnemonic = c[0].upper() if  c[0] else "NOP"
+        mnemonic = c[0].upper() if  c[0] else "NOP"
+        if mnemonic in instr_dict:
             loc_instruct = instr_dict[mnemonic]
+            print(c)
             code_out.append(loc_instruct[0])
-        except Exception:
+            i+= 1
+            # for s in c[1:]:
+            #     if s[0] == 'r':
+            #         code_out[i] += s[1]
+        else:
             print(f"Error on line {raw_code.index(c)}")
             code_errors = True
-    
+        
     # Prevents writing if there are errors in the file
     if code_errors: 
         exit()

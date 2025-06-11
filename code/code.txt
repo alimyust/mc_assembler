@@ -1,4 +1,3 @@
 
 NOP r1 r4 r2
-dsa
 add r3 
