@@ -24,21 +24,49 @@ except Exception as e:
 
 def main():
 
-    i = 0
     code_errors = False
-    for c in raw_code:
-        mnemonic = c[0].upper() if  c[0] else "NOP"
-        if mnemonic in instr_dict:
-            loc_instruct = instr_dict[mnemonic]
-            print(c)
-            code_out.append(loc_instruct[0])
-            i+= 1
-            # for s in c[1:]:
-            #     if s[0] == 'r':
-            #         code_out[i] += s[1]
-        else:
-            print(f"Error on line {raw_code.index(c)}")
+    for rc in raw_code:
+        mnemonic = rc[0].upper() if  rc[0] else "NOP"
+        if mnemonic not in instr_dict:
+            print(f"Incorrect Mnemonic on {raw_code.index(rc)}")
             code_errors = True
+            continue
+        loc_instruct = instr_dict[mnemonic]
+        code_out.append(loc_instruct[0])
+        if mnemonic == "NOP": continue
+
+        for i in range(1, len(rc) - 1):
+            print(rc)
+            if rc[i][0].upper() == 'R':
+                code_out[raw_code.index(rc)] += str(rc[i][1])
+
+
+        # print(f"{loc_instruct} VS {rc}")
+    print(code_out)
+
+    # code_errors = False
+    # for rc in raw_code:
+    #     for l in rc:
+    #         logicfr()
+
+    """
+    for rc in raw_code => rc = ["NOR", "4", "12"]
+
+        case len 1
+            NOP
+        case len 2
+            2logic()
+        case len 3
+            3logic()
+        case len 4
+            4logic()
+        else:
+            break:
+        0000 0000 0000 
+    
+
+    
+    """
         
     # Prevents writing if there are errors in the file
     if code_errors: 

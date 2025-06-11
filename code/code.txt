@@ -1,3 +1,4 @@
 
 NOP r1 r4 r2
 add r3 
+sub r2 r3
