@@ -1,4 +1,5 @@
 
 NOP r1 r4 r2
-add r3 
+add r3
 sub r2 r3
+LDI r1 65

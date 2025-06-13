@@ -3,33 +3,53 @@
 # 
 
 import pygame as pg
+import csv
 
+# --- File Reading ---
+
+# Reading Instruction Set
+
+instr_dict = {}
+p =f"mc_assembler/"
+
+try:
+    with open(p + 'output/out_1.txt') as f:
+        bcode = [line.rstrip("\n") for line in f.readlines()]
+    
+    with open(p +'instruction_set.csv', newline='') as csvfile:
+        instr_set = [row for row in csv.reader(csvfile)]
+        for row in instr_set:
+            instr_dict[row[0]] = row[1:]
+            
+except Exception as e:
+    print(f"File error: {e}")
+    
 #--- Display Settings ---
 SCREEN_WID, SCREEN_HGT = 600, 800
 screen = pg.display.set_mode((SCREEN_WID, SCREEN_HGT))
 pg.display.set_caption("Computer Simulator")
 
-register_file = {} 
+register_file = []
 for i in range(8):
-    register_file.update({"r" + str(i):0})
+    register_file.append(0)
 
-ram = {} 
+ram = [] 
 for i in range(256):
-    ram.update({"r" + str(i):0})
+    ram.append(0)
 
-def draw_scene():
-    pg.draw.rect(screen, (125,125,125), pg.Rect(0,0,SCREEN_WID,SCREEN_HGT))
-
-    #Registerfile
-    reg_file_rect = pg.Rect(0,0,100,80)
-    for i in range(len(register_file)):
-        pg.draw.rect(screen, (40,160,160), pg.Rect(40, 40 + i*70, 100, 60))
-
-
+def ADD(bits:int) -> int:
+    pass
 
 def main():
+    print(instr_dict)
+    # for line in bcode:
+    #     if line[0:4] == 
+    
+    pass
 
-    quit_pg = False
+# def display():
+
+    quit_pg = True
 
     while not quit_pg:
         for event in pg.event.get():
@@ -41,4 +61,5 @@ def main():
         pg.display.flip()
 
 if __name__ == "__main__":
+    # display()
     main()
