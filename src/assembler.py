@@ -1,20 +1,22 @@
 
 import csv
 import string
+import os
 
 # Reading Instruction Set
-p = f"mc_assembler/"
+cwd = os.getcwd()
+print(cwd)
 instr_dict = {}
 code_out = []
 
 try:
-
-    with open(p + 'instruction_set.csv', newline='') as csvfile:
+    
+    with open(cwd + '/instruction_set.csv', newline='') as csvfile:
         instr_set = [row for row in csv.reader(csvfile)]
         for row in instr_set:
             instr_dict[row[0]] = row[1:]
 
-    with open(p + 'code/code.txt', newline='') as f:
+    with open(cwd + '/code/code.txt', newline='') as f:
         raw_code = [line.rstrip("\n").rstrip("\r").split(" ") for line in f.readlines()]
 
 except Exception as e:
@@ -61,7 +63,7 @@ def main():
         exit()
 
     #Writing the file all at once incase there were errors earlier
-    with open(p + "output/out_1.txt", "w") as f:
+    with open(cwd + "/output/out_1.txt", "w") as f:
         for line in code_out:
             f.write(line + "\n")
 
