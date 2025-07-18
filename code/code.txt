@@ -1,4 +1,4 @@
 NOP
-NOP 
-NOP
+LDI r1 5
+LDI r2 56
 NOP

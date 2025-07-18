@@ -9,7 +9,7 @@ import assembler
 # Reading Instruction Set
 
 instr_dict = {}
-regf = [0] * 8
+regf = [0] * 16
 # ram = [0] * 256
 
 BASE_DIR = os.getcwd()
@@ -48,7 +48,8 @@ def DEC(bits) -> None:
 
 
 def run_simulation() -> list:
-    
+    assembler.assemble() # -> Assemble whenever simulation is run
+
     funcs = {
         "NOP":NOP,
         "ADD":ADD,
@@ -65,6 +66,7 @@ def run_simulation() -> list:
             opcode = instr_dict[opcode_bits][0]
             funcs[opcode](operands_bits) # execute the opcode function with the operand
             history[i] = [opcode, bcode[i],regf.copy()]
+    list(map(lambda row: print(row), history))
     return history
 
 if __name__ == "__main__":

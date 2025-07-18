@@ -17,7 +17,7 @@ try:
             instr_dict[row[0]] = row[1:]
 
     with open(cwd + '/code/code.txt', newline='') as f:
-        raw_code = [line.rstrip("\n").rstrip("\r").split(" ") for line in f.readlines()]
+        raw_code = [line.rstrip("\n").rstrip("\r").rstrip(" ").split(" ") for line in f.readlines()]
 
 except Exception as e:
     print(f"File setup error: {e}")
@@ -60,14 +60,13 @@ def assemble():
 
     # Prevents writing if there are errors in the file
     if code_errors: 
+        print("CODE ERRORS")
         exit()
 
     #Writing the file all at once incase there were errors earlier
     with open(cwd + "/output/out_1.txt", "w") as f:
         for line in code_out:
             f.write(line + "\n")
-
-    exit()
     
     
 # assemble()
