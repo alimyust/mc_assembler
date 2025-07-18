@@ -30,7 +30,7 @@ def int_to_bin(num:int, bit_len:int) -> str:
     return num        
 
 
-def main():
+def assemble():
 
     code_errors = False
     instruction_size = 16
@@ -68,6 +68,10 @@ def main():
             f.write(line + "\n")
 
     exit()
-              
+    
+    
+# assemble()
+# print("Running")
+          
 if __name__ == '__main__':
-    main()
+    assemble()
