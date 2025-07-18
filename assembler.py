@@ -1,9 +1,11 @@
 
 import csv
 import string
+import os
 
 # Reading Instruction Set
-p = f"mc_assembler/"
+# p = f"mc_assembler/"
+p = ""
 instr_dict = {}
 code_out = []
 
